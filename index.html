@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sheryan Agency - Home</title>
+    <title>Sheryan Agency</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.9/dist/lenis.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <style>
         :root {
             --primary-color: #0a192f;
@@ -15,6 +17,10 @@
             --background-color: #0a192f;
             --accent-color: #f06292;
         }
+        ::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+            opacity: 1; /* Firefox */
+          }
         html {
             scrollbar-width: none; /* Hides scrollbar in Firefox */
             scroll-behavior: smooth;
@@ -215,17 +221,47 @@
         .portfolio-item h3 {
             font-size: 1.5rem;
             margin-bottom: 10px;
+            font-weight: bolder;
             color: var(--secondary-color);
         }
         
         .portfolio-item p {
             font-size: 1rem;
+            font-weight: bold;
             margin-bottom: 15px;
             color: var(--text-color);
         }
         
         .portfolio-item .btn:hover {
             background-color: rgba(100, 255, 218, 0.1);
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 40px 0;
+
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 3px solid rgba(225, 225, 225, 0.2);
+            z-index: 500;
+        }
+        
+        .divider:not(:empty)::before {
+            margin-right: 1rem;
+        }
+        
+        .divider:not(:empty)::after {
+            margin-left: 1rem;
+        }
+        
+        .divider span {
+            font-size: 2rem;
+            color: var(--secondary-color);
         }
 
         .swiper {
@@ -415,6 +451,138 @@
             animation: fadeInUp 1s ease forwards 0.5s;
         }
 
+        #contact {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .banner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+        }
+        
+        .contact-title {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 8vw;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .contact-section {
+            width: 40%;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .map-container {
+            height: 200px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .contact-section input, .contact-section textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.25);
+            color: #fff;
+            font-size: 14px;
+        }
+        
+        .contact-section button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .contact-section button:hover {
+            background-color: #0056b3;
+        }
+        
+        .locate-btn {
+            width: auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            display: block;
+            margin: 0 auto 15px auto;
+        }
+        
+        .locate-btn:hover {
+            background-color: #0056b3;
+            box-shadow: 0 4px 15px rgba(0, 91, 187, 0.5);
+        }
+
+        .contact-image {
+            width: 900px;
+            height: 575px;
+            object-fit: contain;
+            max-width: 50%;
+        }
+
+
+        .name-inputs {
+            display: flex;
+            width: 100%;
+        }
+        
+        .name-input {
+            width: calc(50% - 5px); /* Ensure inputs are side by side with space in between */
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.25);
+            color: #333;
+            font-size: 14px;
+            box-sizing: border-box; /* Ensure padding is included in width */
+        }
+        
+        .name-input + .name-input {
+            margin-left: 10px; /* Space between the two inputs */
+        }
+        textarea {
+            resize: vertical; 
+        }
+        
+
         @media (max-width: 480px) {
             .bento-grid {
                 grid-template-columns: 1fr;
@@ -443,10 +611,11 @@
 
     <nav class="menu" id="menu">
         <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#sponsors">Sponsors</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#services">Services</a></li>
-            <li><a href="#sponsors">Sponsors</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -461,41 +630,80 @@
 
         <section id="about">
             <h1>Who are We?</h1>
-                            <div class="portfolio-grid">
+                <div class="portfolio-grid">
                                 
                     <div class="portfolio-item">
-                        <img src="18609394-young-business-people-working-in-the-office.jpg" alt="Project 1">
+                        <img src="Siran.jpeg" alt="Project 1">
                         <div class="portfolio-item-content">
                             <h3>Siran Chan</h3>
                             <p>CEO and Co-founder of Shortly.</p>
-                            <a href="#" class="btn">View Project</a>
+                            <a href="#" class="btn">Contact</a>
                         </div>
                     </div>
                     <div class="portfolio-item">
-                        <img src="18609394-young-business-people-working-in-the-office.jpg" alt="Project 2">
+                        <img src="Aya.jpeg" alt="Project 2">
                         <div class="portfolio-item-content">
                             <h3>Aya McMillan</h3>
                             <p>Head creative director at Shortly.</p>
-                            <a href="#" class="btn">View Project</a>
+                            <a href="#" class="btn">Contact</a>
                         </div>
                     </div>
                     <div class="portfolio-item">
-                        <img src="18609394-young-business-people-working-in-the-office.jpg" alt="Project 3">
+                        <img src="Jonathon.jpeg" alt="Project 3">
                         <div class="portfolio-item-content">
                             <h3>Johnathon Roe</h3>
                             <p>General manager of Shortly finance.</p>
-                            <a href="#" class="btn">View Project</a>
+                            <a href="#" class="btn">Contact</a>
                         </div>
                     </div>
                     <div class="portfolio-item">
-                        <img src="18609394-young-business-people-working-in-the-office.jpg" alt="Upcoming Project">
+                        <img src="intern.jpeg" alt="Upcoming Project">
                         <div class="portfolio-item-content">
                             <h3>Jack Seffing</h3>
                             <p>Intern at Shortly accounting.</p>
-                            <a href="#" class="btn">Learn More</a>
+                            <a href="#" class="btn">Contact</a>
                         </div>
                     </div>
                 </div>
+                <div class="divider">
+                    <span>Our Sponsors</span>
+                </div>
+            
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <img src="subway.jpeg" alt="Project 1">
+                        <div class="portfolio-item-content">
+                            <h3>Subway</h3>
+                            <p>Supporting since 1963.</p>
+                            <a href="#" class="btn">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="burgerKing.jpeg" alt="Project 2">
+                        <div class="portfolio-item-content">
+                            <h3>Burger King</h3>
+                            <p>Supporting since 2005.</p>
+                            <a href="#" class="btn">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="sonic.jpeg" alt="Project 3">
+                        <div class="portfolio-item-content">
+                            <h3>Sonic Burger</h3>
+                            <p>Supporting since 1865.</p>
+                            <a href="#" class="btn">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="pointing.jpg" alt="Upcoming Project">
+                        <div class="portfolio-item-content">
+                            <h3>Want to sponser us?</h3>
+                            <p>Support our business!</p>
+                            <a href="#" class="btn">Sponser now!</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </section>
     </section>
         <section class="portfolio" id="portfolio">
@@ -559,12 +767,30 @@
                 </div>
             </div>
         </section>
+        <section id="contact">
 
+            <div class="banner">
+                <img src="ContactWhite.png" alt="Contact Us" class="contact-image" draggable="false">
+                <div class="contact-section">
+                    <button class="locate-btn" onclick="locateUser()">Find My Location</button>
+                    <div id="map" class="map-container"></div>
+                    <div class="name-inputs">
+                        <input type="text" placeholder="First Name" class="name-input" required>
+                        <input type="text" placeholder="Last Name" class="name-input" required>
+                    </div>
+                    <input type="email" placeholder="Email" required>
+                    <textarea placeholder="Inquiry" rows="4" required></textarea>
+                    <button type="submit">Send Now</button>
+                </div>
+            </div>
+        </section>
 
     </main>
 
     <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
         // Initialize Lenis
         const lenis = new Lenis({
@@ -600,6 +826,34 @@
             effect: "cards",
             grabCursor: true,
           });
+          var map = L.map('map').setView([0, 0], 1);
+
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              maxZoom: 500,
+          }).addTo(map);
+      
+          function locateUser() {
+              map.locate({
+                  setView: true,
+                  maxZoom: 16,
+                  timeout: 10000,  // 10 seconds timeout
+                  maximumAge: 0,   // No cached position
+                  enableHighAccuracy: true
+              });
+      
+              map.on('locationfound', function (e) {
+                var radius = e.accuracy / 2;
+    
+                L.circle(e.latlng, radius).addTo(map);
+    
+                map.setView(e.latlng, 13);
+            });
+    
+            map.on('locationerror', function (e) {
+                alert("Location error: " + e.message);
+            });
+        }
+      
 
         // Menu toggle script remains unchanged
         const menuIcon = document.getElementById('menuIcon');
