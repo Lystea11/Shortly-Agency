@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sheryan Agency - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.9/dist/lenis.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        :root {
+            --primary-color: #0a192f;
+            --secondary-color: #64ffda;
+            --text-color: #ccd6f6;
+            --background-color: #0a192f;
+            --accent-color: #f06292;
+        }
+        html {
+            scrollbar-width: none; /* Hides scrollbar in Firefox */
+            scroll-behavior: smooth;
+          }
+          
+          /* For WebKit-based browsers (Chrome, Safari, Edge) */
+          html::-webkit-scrollbar {
+            display: none; /* Hides scrollbar in WebKit browsers */
+          }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            z-index: 1;
+        }
+
+        body {
+            background: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .menu-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 3rem;
+            color: var(--secondary-color);
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 25, 47, 0.99);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.3s ease;
+            z-index: 999;
+        }
+
+        .menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .menu ul {
+            list-style: none;
+            text-align: center;
+        }
+
+        .menu ul li {
+            margin: 20px 0;
+        }
+
+        .menu ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .menu ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+
+        .pp {
+            position: relative;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 0.7s;
+            z-index: 1;
+        }
+        
+        p::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: inherit;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--secondary-color);
+            padding: 12px 30px;
+            text-decoration: none;
+            border: 2px solid var(--secondary-color);
+            border-radius: 5px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 0.9s;
+        }
+
+        .btn:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .portfolio {
+            padding: 20px;
+            overflow-x: hidden;
+            padding-top: 0px;
+            z-index: 999;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .portfolio h2 {
+            font-size: 3rem;
+            margin-bottom: 50px;
+            color: var(--secondary-color);
+            text-align: center;
+        }
+        
+        .portfolio-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 20px;
+            justify-content: center;
+        }
+
+        .portfolio-item {
+            flex: 1 1 calc(25% - 60px);
+            max-width: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 20px;
+        }
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .portfolio-item .btn {
+            font-size: 0.9rem;
+            padding: 8px 20px;
+            background-color: transparent;
+            color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+                
+        .portfolio-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .portfolio-item p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+        
+        .portfolio-item .btn:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+        }
+
+        .swiper {
+            width: 100%;
+            height: 50vh;
+          }
+
+
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: rgba(0, 0, 0, 0.005);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s ease, box-shadow 0.3 ease;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+          }
+
+          .swiper-slide:hover {
+            background: rgba(0, 0, 0, 0.12);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+          }
+    
+        
+        .swiper-slide h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .swiper-slide p {
+            font-size: 1.95rem;
+            margin-bottom: 15px;
+            margin-left: 50px;
+            margin-right: 50px;
+            color: var(--text-color);
+        }
+
+        .swiper-button-next {
+            color: #64ffda;
+        }
+        .swiper-button-prev {
+            color: #64ffda;
+        }
+        .swiper-pagination-bullet-active {
+            background-color: #64ffda;
+        }
+
+
+        
+        .swiper-slide .btn {
+            font-size: 0.9rem;
+            padding: 8px 20px;
+            background-color: transparent;
+            color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .swiper-slide .btn:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+        }
+        .bento-grid-section h1 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+            text-align: center;
+        }
+        
+        .bento-grid {
+            display: grid;
+            justify-content: center;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, minmax(150px, auto));
+            background-color: rgb(10, 25, 47,0.65);
+            gap: 20px;
+            padding-bottom: 50px;
+            z-index: 1;
+        }
+        
+        .service-card {
+            background-color: rgba(100, 255, 218, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            z-index: 2;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.2);
+        }
+        
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .service-card h2 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+        
+        .service-card p {
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+        
+        .service-card.large {
+            grid-column: span 1;
+            grid-row: span 3;
+        }
+        
+        .service-card.medium {
+            grid-column: span 2;
+        }
+        
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+            }
+
+            .btn {
+                font-size: 1rem;
+            }
+
+            .portfolio h2 {
+                font-size: 2.5rem;
+            }
+            .bento-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .service-card.large, .service-card.medium {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+        }
+        spline-viewer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        #about h1 {
+            font-size: 4rem;
+            margin-top: 200px;
+            margin-bottom: 0px;
+            text-align: center;
+            color: var(--secondary-color);
+            opacity: 0;
+            z-index: 999;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+
+        @media (max-width: 480px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 1000px) {
+            .portfolio-item {
+                flex: 1 1 calc(50% - 60px); /* Flex item to be half of the container width, minus the gap */
+            }
+        }
+        
+        /* Media query for screens under 600px */
+        @media (max-width: 600px) {
+            .portfolio-item {
+                flex: 1 1 100%; /* Flex item to take up the full container width */
+            }
+        }
+    </style>
+</head>
+<body>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.6/build/spline-viewer.js"></script>
+<spline-viewer url="https://prod.spline.design/fp2DPlpiy56SL6fL/scene.splinecode" events-target="global"></spline-viewer>
+    <div class="menu-icon" id="menuIcon">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <nav class="menu" id="menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#sponsors">Sponsors</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="home">
+        <div class="container">
+            <h1>Welcome to Shortly Agency</h1>
+            <p class="pp">Unleashing Creativity, Delivering Excellence</p>
+            <a href="contact.html" class="btn">Get in Touch</a>
+        </div>
+
+        <section id="about">
+            <h1>Who are We?</h1>
+                            <div class="portfolio-grid">
+                                
+                    <div class="portfolio-item">
+                        <img src="18609394-young-business-people-working-in-the-office.jpg" alt="Project 1">
+                        <div class="portfolio-item-content">
+                            <h3>Siran Chan</h3>
+                            <p>CEO and Co-founder of Shortly.</p>
+                            <a href="#" class="btn">View Project</a>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="18609394-young-business-people-working-in-the-office.jpg" alt="Project 2">
+                        <div class="portfolio-item-content">
+                            <h3>Aya McMillan</h3>
+                            <p>Head creative director at Shortly.</p>
+                            <a href="#" class="btn">View Project</a>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="18609394-young-business-people-working-in-the-office.jpg" alt="Project 3">
+                        <div class="portfolio-item-content">
+                            <h3>Johnathon Roe</h3>
+                            <p>General manager of Shortly finance.</p>
+                            <a href="#" class="btn">View Project</a>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="18609394-young-business-people-working-in-the-office.jpg" alt="Upcoming Project">
+                        <div class="portfolio-item-content">
+                            <h3>Jack Seffing</h3>
+                            <p>Intern at Shortly accounting.</p>
+                            <a href="#" class="btn">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </section>
+        <section class="portfolio" id="portfolio">
+            <div class="container">
+                <h2>Our Portfolio</h2>
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <h2>Project 0x65</h2>
+                                <p>In this project we took care and detail into creating one of the most visually impressive and creative directions.</p>
+                            </div>
+                            <div class="swiper-slide">
+                                <h2>Project 0x65</h2>
+                                    <p>In this project we took care and detail into creating one of the most visually impressive and creative directions.</p>
+                                </div>
+                            <div class="swiper-slide">
+                                <h2>Project 0x65</h2>
+                                    <p>In this project we took care and detail into creating one of the most visually impressive and creative directions.</p>
+                                </div>
+                            <div class="swiper-slide">
+                                <h2>Project 0x65</h2>
+                                    <p>In this project we took care and detail into creating one of the most visually impressive and creative directions.</p>
+                                </div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bento-grid-section" id="services">
+            <div class="container" id="bento-container">
+                <h1>Our Services</h1>
+                <div class="bento-grid">
+                    <div class="service-card large">
+                        <i class="fas fa-film"></i>
+                        <h2>Production</h2>
+                        <p>High-quality video production for all your needs, from concept to final cut. We specialize in creating engaging content that tells your story and captivates your audience.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-palette"></i>
+                        <h2>Graphic Design</h2>
+                        <p>Stunning visuals that capture your brand's essence and leave a lasting impression.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-vector-square"></i>
+                        <h2>Motion Graphics</h2>
+                        <p>Bring your ideas to life with captivating animations and visual effects.</p>
+                    </div>
+                    <div class="service-card medium">
+                        <i class="fas fa-code"></i>
+                        <h2>Front-end Programming</h2>
+                        <p>Creating responsive and interactive web experiences that engage your audience and showcase your brand in the best light possible.</p>
+                    </div>
+                    <div class="service-card medium">
+                        <i class="fas fa-database"></i>
+                        <h2>Back-end Programming</h2>
+                        <p>Robust server-side solutions for scalable and efficient applications. We ensure your digital infrastructure is solid, secure, and performant.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Lenis
+        const lenis = new Lenis({
+            duration: 1.2,  // Adjust scrolling duration (in seconds)
+            smooth: true,
+            direction: 'vertical',  // Scroll direction
+            gestureDirection: 'vertical',
+            smoothTouch: true,  // Enable smooth touch scrolling
+            touchMultiplier: 2,  // Increase touch scrolling speed
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+
+        var swiper = new Swiper(".mySwiper", {
+            centeredSlides: true,
+            loop: true,
+            cssMode: true,
+            pagination: {
+              el: ".swiper-pagination",
+              clickable: true,
+            },
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+          });
+          var swiper = new Swiper(".mySwiper2", {
+            effect: "cards",
+            grabCursor: true,
+          });
+
+        // Menu toggle script remains unchanged
+        const menuIcon = document.getElementById('menuIcon');
+        const menu = document.getElementById('menu');
+
+        menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!menuIcon.contains(e.target)) {
+                menu.classList.remove('active');
+            }
+        });
+
+        // Observer for service-card animations
+        const cards = document.querySelectorAll('.service-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Apply the animation
+                    entry.target.style.animation = `fadeInUp 0.6s ease forwards ${index * 0.1}s`;
+                } else {
+                    // Reset the animation by removing it (optional delay for smoother transition)
+                    entry.target.style.animation = 'none';
+                    setTimeout(() => {
+                        entry.target.style.animation = ''; // This resets the animation property, allowing it to be reapplied
+                    }, 100); 
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        cards.forEach(card => observer.observe(card));
+    </script>
+</body>
+</html>

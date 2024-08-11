@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sheryan Agency - Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0a192f;
+            --secondary-color: #64ffda;
+            --text-color: #ccd6f6;
+            --background-color: #0a192f;
+            --accent-color: #f06292;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .menu-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: var(--secondary-color);
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 25, 47, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 999;
+        }
+
+        .menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .menu ul {
+            list-style: none;
+            text-align: center;
+        }
+
+        .menu ul li {
+            margin: 20px 0;
+        }
+
+        .menu ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .menu ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+            text-align: center;
+        }
+
+        .bento-grid {
+            display: grid;
+            justify-content: center;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, minmax(150px, auto));
+            gap: 20px;
+        }
+
+        .service-card {
+            background-color: rgba(100, 255, 218, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.2);
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .service-card h2 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+
+        .service-card p {
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .service-card.large {
+            grid-column: span 1;
+            grid-row: span 3;
+        }
+
+        .service-card.medium {
+            grid-column: span 2;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .service-card.large, .service-card.medium {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-icon" id="menuIcon">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <nav class="menu" id="menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="sponsors.html">Sponsors</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <h1>Our Services</h1>
+        <div class="bento-grid">
+            <div class="service-card large">
+                <i class="fas fa-film"></i>
+                <h2>Production</h2>
+                <p>High-quality video production for all your needs, from concept to final cut. We specialize in creating engaging content that tells your story and captivates your audience.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-palette"></i>
+                <h2>Graphic Design</h2>
+                <p>Stunning visuals that capture your brand's essence and leave a lasting impression.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-vector-square"></i>
+                <h2>Motion Graphics</h2>
+                <p>Bring your ideas to life with captivating animations and visual effects.</p>
+            </div>
+            <div class="service-card medium">
+                <i class="fas fa-code"></i>
+                <h2>Front-end Programming</h2>
+                <p>Creating responsive and interactive web experiences that engage your audience and showcase your brand in the best light possible.</p>
+            </div>
+            <div class="service-card medium">
+                <i class="fas fa-database"></i>
+                <h2>Back-end Programming</h2>
+                <p>Robust server-side solutions for scalable and efficient applications. We ensure your digital infrastructure is solid, secure, and performant.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const menuIcon = document.getElementById('menuIcon');
+        const menu = document.getElementById('menu');
+
+        menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+             if (!menuIcon.matches(':hover') && !menu.matches(':hover')) {
+               menu.classList.remove('active');
+            }
+        });
+
+        // Animate service cards on scroll
+        const cards = document.querySelectorAll('.service-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = `fadeInUp 0.6s ease forwards ${index * 0.1}s`;
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach(card => observer.observe(card));
+    </script>
+</body>
+</html>
