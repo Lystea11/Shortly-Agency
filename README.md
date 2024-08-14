@@ -9,7 +9,7 @@
 
   
 
-![Project Banner](https://github.com/Lystea11/Shortly-Agency/blob/5e7811509413a4d8880acf81b2ef4a4f629049cc/Banner.png)
+![Project Banner](https://github.com/Lystea11/Shortly-Agency/blob/beccbb2ddfe21ebc6c55e4588b214a63ab3ae4cf/Banner.png)
 
   
 
