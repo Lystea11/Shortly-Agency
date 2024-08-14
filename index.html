@@ -857,7 +857,11 @@ var userLongitude = '';
             });
     
             map.on('locationerror', function (e) {
+                if (e.message == "Geolocation error: User denied Geolocation.") {
+                    alert("Please turn on your location for this feature to work.")
+                }else {
                 alert("Location error: " + e.message);
+                }
             });
         }
       
