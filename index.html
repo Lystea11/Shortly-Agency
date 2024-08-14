@@ -241,14 +241,15 @@
             align-items: center;
             text-align: center;
             margin: 40px 0;
-
+            padding: 0 6%; /* Add padding on the sides, using percentages */
         }
         
         .divider::before,
         .divider::after {
             content: "";
             flex: 1;
-            border-bottom: 3px solid rgba(225, 225, 225, 0.2);
+            border-bottom: 3px solid rgba(225, 225, 225, 0.4);
+            border-radius: 15px;
             z-index: 500;
         }
         
@@ -670,7 +671,7 @@
                     <span>Our Sponsors</span>
                 </div>
             
-                <div class="portfolio-grid">
+                <div class="portfolio-grid" id="sponsors">
                     <div class="portfolio-item">
                         <img src="subway.jpeg" alt="Project 1">
                         <div class="portfolio-item-content">
