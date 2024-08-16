@@ -18,8 +18,20 @@
             --background-color: #0a192f;
             --accent-color: #f06292;
         }
+
+        body.light-mode {
+            --primary-color: #f0f4f8;
+            --secondary-color: #007bff;
+            --text-color: #333333;
+            --background-color: #ffffff;
+            --accent-color: #ff4081;
+        }
         ::placeholder {
             color: rgba(255, 255, 255, 0.7);
+            opacity: 1; /* Firefox */
+          }
+          body.light-mode ::placeholder {
+            color: rgba(0, 0, 0, 0.7);
             opacity: 1; /* Firefox */
           }
         html {
@@ -63,7 +75,7 @@
         .menu-icon {
             position: fixed;
             top: 20px;
-            right: 20px;
+            right: 20px; /* Adjusted to make space for the toggle */
             font-size: 3rem;
             color: var(--secondary-color);
             cursor: pointer;
@@ -84,6 +96,9 @@
             visibility: hidden;
             transition: opacity 0.5s ease, visibility 0.3s ease;
             z-index: 999;
+        }
+        body.light-mode .menu {
+            background-color: rgba(226, 229, 233, 0.95);
         }
 
         .menu.active {
@@ -109,6 +124,9 @@
 
         .menu ul li a:hover {
             color: var(--secondary-color);
+        }
+        body.light-mode .menu ul li a:hover {
+            color: var(--accent-color);
         }
 
         h1 {
@@ -252,6 +270,9 @@
             border-radius: 15px;
             z-index: 500;
         }
+        body.light-mode .divider::before, body.light-mode .divider::after {
+            border-bottom: 3px solid rgba(204,204,204, 0.7);
+        }
         
         .divider:not(:empty)::before {
             margin-right: 1rem;
@@ -283,7 +304,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: background 0.3s ease, box-shadow 0.3 ease;
+            transition: background 0.7s ease, box-shadow 0.7 ease;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.2);
           }
@@ -294,8 +315,9 @@
           }
     
         
-        .swiper-slide h3 {
-            font-size: 1.5rem;
+        .swiper-slide h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
             margin-bottom: 10px;
             color: var(--secondary-color);
         }
@@ -316,6 +338,15 @@
         }
         .swiper-pagination-bullet-active {
             background-color: #64ffda;
+        }
+        body.light-mode .swiper-button-next {
+            color: #007bff;
+        }
+        body.light-mode .swiper-button-prev {
+            color: #007bff;
+        }
+        body.light-mode .swiper-pagination-bullet-active {
+            background-color: #007bff;
         }
 
 
@@ -346,7 +377,7 @@
             justify-content: center;
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(3, minmax(150px, auto));
-            background-color: rgb(10, 25, 47,0.65);
+            /*background-color: rgb(10, 25, 47,0.65);*/
             gap: 20px;
             padding-bottom: 50px;
             z-index: 1;
@@ -397,6 +428,14 @@
         
         .service-card.medium {
             grid-column: span 2;
+        }
+        body.light-mode .service-card {
+            background-color: rgba(252, 252, 252, 0.6);
+        }
+        
+        body.light-mode .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
         
 
@@ -484,6 +523,7 @@
             margin: 0;
             padding: 0;
         }
+
         
         .contact-section {
             width: 40%;
@@ -516,6 +556,9 @@
             background: rgba(255, 255, 255, 0.25);
             color: #fff;
             font-size: 14px;
+        }
+        body.light-mode .contact-section input, body.light-mode .contact-section textarea {
+            color:#000;
         }
         
         .contact-section button {
@@ -584,6 +627,52 @@
             resize: vertical; 
         }
         
+        .light-mode-toggle {
+            position: fixed;
+            top: 40px;
+            right: 80px;
+            width: 60px;
+            height: 30px;
+            background-color: var(--secondary-color);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            outline: none;
+            z-index: 1000;
+            transition: background-color 0.4s ease, transform 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8px;
+        }
+        
+        .light-mode-toggle .fa-moon {
+            font-size: 1.2rem;
+            color: var(--background-color);
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+        
+        .light-mode-toggle .fa-sun {
+            font-size: 1.2rem;
+            color: var(--background-color);
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        
+        body.light-mode .light-mode-toggle {
+            background-color: #FFECB3;
+        }
+        
+        body.light-mode .light-mode-toggle .fa-moon {
+            opacity: 0;
+            transform: translateX(30px);
+        }
+        
+        body.light-mode .light-mode-toggle .fa-sun {
+            opacity: 1;
+            transform: translateX(0);
+        }
 
         @media (max-width: 480px) {
             .bento-grid {
@@ -605,8 +694,10 @@
     </style>
 </head>
 <body>
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.6/build/spline-viewer.js"></script>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.12/build/spline-viewer.js"></script>
+    <div id="spline-viewer-container">
 <spline-viewer url="https://prod.spline.design/fp2DPlpiy56SL6fL/scene.splinecode" events-target="global"></spline-viewer>
+<div>
     <div class="menu-icon" id="menuIcon">
         <i class="fas fa-bars"></i>
     </div>
@@ -772,7 +863,7 @@
         <section id="contact">
 
             <div class="banner">
-                <img src="./Images/ContactWhite.png" alt="Contact Us" class="contact-image" draggable="false">
+                <img src="./Images/ContactWhite.png" alt="Contact Us" class="contact-image" draggable="false" id="contact-image">
                 <div class="contact-section">
                     <button class="locate-btn" onclick="locateUser()">Find My Location</button>
                     <div id="map" class="map-container"></div>
@@ -1003,6 +1094,73 @@ document.querySelector('button[type="submit"]').addEventListener('click', (event
     event.preventDefault(); // Prevent the default form submission
     handleSubmit();
 });
+
+const lightModeToggle = document.createElement('button');
+lightModeToggle.classList.add('light-mode-toggle');
+
+// Add Font Awesome icons to the button
+lightModeToggle.innerHTML = `
+    <i class="fas fa-moon"></i>
+    <i class="fas fa-sun"></i>
+`;
+
+document.body.appendChild(lightModeToggle);
+// Function to toggle between light and dark mode
+function toggleTheme() {
+    document.body.classList.toggle('light-mode');
+    const isLightMode = document.body.classList.contains('light-mode');
+    
+    // Update the contact image source based on the mode
+    const contactImage = document.getElementById("contact-image");
+    contactImage.src = isLightMode ? "./Images/ContactBlack.png" : "./Images/ContactWhite.png";
+    
+    // Update the Spline viewer URL based on the mode
+    const splineViewerContainer = document.getElementById("spline-viewer-container");
+    const newUrl = isLightMode 
+        ? "https://prod.spline.design/7naKMwizf4RyACwA/scene.splinecode" 
+        : "https://prod.spline.design/fp2DPlpiy56SL6fL/scene.splinecode";
+    
+    // Remove the existing spline-viewer
+    const existingViewer = document.querySelector('spline-viewer');
+    if (existingViewer) {
+        splineViewerContainer.removeChild(existingViewer);
+    }
+    
+    // Create a new spline-viewer element with the updated URL
+    const newViewer = document.createElement('spline-viewer');
+    newViewer.setAttribute('url', newUrl);
+    newViewer.setAttribute('events-target', 'global');
+    
+    // Append the new viewer to the container
+    splineViewerContainer.appendChild(newViewer);
+
+    // Save the current theme mode to localStorage
+    localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
+}
+
+// Function to apply the theme based on localStorage
+function applyStoredTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    
+    const contactImage = document.getElementById("contact-image");
+    const splineViewer = document.querySelector('spline-viewer');
+    
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-mode');
+        contactImage.src = "./Images/ContactBlack.png";
+        splineViewer.url = "https://prod.spline.design/7naKMwizf4RyACwA/scene.splinecode";
+    } else {
+        document.body.classList.remove('light-mode');
+        contactImage.src = "./Images/ContactWhite.png";
+        splineViewer.url = "https://prod.spline.design/fp2DPlpiy56SL6fL/scene.splinecode";
+    }
+}
+
+// Event listener for the toggle button
+lightModeToggle.addEventListener('click', toggleTheme);
+
+// Apply the stored theme when the page loads
+applyStoredTheme();
     </script>
 </body>
 </html>

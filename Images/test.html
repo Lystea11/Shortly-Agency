@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark/Light Mode Toggle</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --light-bg: #f5f5f5;
+            --light-text: #333;
+            --dark-bg: #1e1e1e;
+            --dark-text: #f5f5f5;
+            --toggle-gradient-light: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            --toggle-gradient-dark: linear-gradient(45deg, #a18cd1, #fbc2eb);
+            --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --shadow-dark: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--light-text);
+            font-family: 'Arial', sans-serif;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+        }
+        
+        .toggle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .mode-toggle {
+            display: none;
+        }
+        
+        .toggle-label {
+            width: 60px;
+            height: 30px;
+            background: var(--toggle-gradient-light);
+            border-radius: 50px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: var(--shadow-light);
+            transition: background 0.5s ease, box-shadow 0.5s ease;
+        }
+        
+        .toggle-circle {
+            width: 26px;
+            height: 26px;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s ease, background-color 0.5s ease;
+        }
+        
+        .mode-toggle:checked + .toggle-label {
+            background: var(--toggle-gradient-dark);
+            box-shadow: var(--shadow-dark);
+        }
+        
+        .mode-toggle:checked + .toggle-label .toggle-circle {
+            transform: translateX(30px);
+            background-color: #444;
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <div class="toggle-container">
+        <input type="checkbox" id="mode-toggle" class="mode-toggle">
+        <label for="mode-toggle" class="toggle-label">
+            <div class="toggle-circle"></div>
+        </label>
+    </div>
+
+    <h1>Dark/Light Mode Toggle</h1>
+    <p>Toggle between light and dark mode to see the smooth animation.</p>
+
+    <script>
+        const toggle = document.getElementById('mode-toggle');
+        const body = document.body;
+
+        toggle.addEventListener('change', () => {
+            body.classList.toggle('dark-mode');
+        });
+    </script>
+</body>
+</html>
