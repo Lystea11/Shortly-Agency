@@ -19,6 +19,10 @@
             --accent-color: #f06292;
         }
 
+        body {
+            overflow-x:hidden;
+        }
+
         body.light-mode {
             --primary-color: #f0f4f8;
             --secondary-color: #007bff;
@@ -440,38 +444,7 @@
         }
         
 
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 3rem;
-            }
-
-            p {
-                font-size: 1.2rem;
-            }
-
-            .btn {
-                font-size: 1rem;
-            }
-
-            .portfolio h2 {
-                font-size: 2.5rem;
-            }
-            .bento-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .service-card.large, .service-card.medium {
-                grid-column: span 1;
-                grid-row: span 1;
-            }
-        }
         spline-viewer {
             position: fixed;
             top: 0;
@@ -680,16 +653,48 @@
                 grid-template-columns: 1fr;
             }
         }
-        @media (max-width: 1000px) {
-            .portfolio-item {
-                flex: 1 1 calc(50% - 60px); /* Flex item to be half of the container width, minus the gap */
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+            }
+
+            .btn {
+                font-size: 1rem;
+            }
+            
+            .portfolio-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-gap: 10px; /* Adjust gap as necessary */
+            }
         
-        /* Media query for screens under 600px */
-        @media (max-width: 600px) {
-            .portfolio-item {
-                flex: 1 1 100%; /* Flex item to take up the full container width */
+            .portfolio-grid .portfolio-item {
+                width: 100%;
+                height: auto; /* Ensure items scale properly */
+            }
+
+            .portfolio h2 {
+                font-size: 2.5rem;
+            }
+            .bento-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .service-card.large, .service-card.medium {
+                grid-column: span 1;
+                grid-row: span 1;
             }
         }
     </style>
