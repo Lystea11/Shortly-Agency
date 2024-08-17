@@ -252,7 +252,7 @@
         .portfolio-item p {
             font-size: 1rem;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             color: var(--text-color);
         }
         
@@ -289,6 +289,7 @@
         
         .divider span {
             font-size: 2rem;
+            font-weight: bolder;
             color: var(--secondary-color);
         }
 
@@ -648,11 +649,6 @@
             transform: translateX(0);
         }
 
-        @media (max-width: 480px) {
-            .bento-grid {
-                grid-template-columns: 1fr;
-            }
-        }
 
         @keyframes fadeInUp {
             to {
@@ -679,23 +675,108 @@
                 grid-template-columns: 1fr 1fr;
                 grid-gap: 10px; /* Adjust gap as necessary */
             }
+            #abouth1 {
+                font-size: 3rem !important;
+            }
+            #about h1 {
+                margin-top: 50px;
+            }
+
         
             .portfolio-grid .portfolio-item {
                 width: 100%;
                 height: auto; /* Ensure items scale properly */
             }
-
-            .portfolio h2 {
-                font-size: 2.5rem;
+            .portfolio-item img {
+                max-height: 150px;
             }
-            .bento-grid {
-                grid-template-columns: 1fr 1fr;
+            .portfolio-item p {
+                font-size: 0.7rem;
+                margin-bottom: 0px;
+            }
+
+            .portfolio-item h3 {
+                font-size: 1rem;
+            }
+
+            .swiper {
+                width: 100%;
+                height: 30vh;
+              }
+
+            .swiper-slide h2 {
+                font-size: 2rem;
+                margin-bottom: 10px;
+                color: var(--secondary-color);
             }
             
-            .service-card.large, .service-card.medium {
-                grid-column: span 1;
-                grid-row: span 1;
+            .swiper-slide p {
+                font-size: 1rem;
+                margin-bottom: 15px;
+                margin-left: 0px;
+                margin-right: 0px;
+                color: var(--text-color);
             }
+            .swiper-button-next {
+                visibility: hidden;
+            }
+            .swiper-button-prev {
+                visibility: hidden;
+            }
+
+            .bento-grid {
+                padding-left: 2px;
+                padding-right: 2px;
+            }
+
+            .service-card i {
+                font-size: 1.4rem;
+                color: var(--secondary-color);
+                margin-bottom: 15px;
+            }
+            
+            .service-card h2 {
+                font-size: 0.6rem;
+                margin-bottom: 10px;
+                color: var(--accent-color);
+            }
+            .service-card p {
+                font-size: 0.3rem;
+            }
+
+
+            .service-card.medium i {
+                font-size: 2rem;
+                color: var(--secondary-color);
+                margin-bottom: 15px;
+            }
+            
+            .service-card.medium h2 {
+                font-size: 1rem;
+                margin-bottom: 10px;
+                color: var(--accent-color);
+            }
+            .service-card.medium p {
+                font-size: 0.5rem;
+            }
+
+            .service-card.large i {
+                font-size: 3rem;
+            }
+            .service-card.large h2 {
+                font-size: 1.5rem;
+            }
+            .service-card.large p {
+                font-size: 0.7rem;
+            }
+
+            .banner {
+                flex-direction: column;
+            }
+            .contact-section {
+                width: 100%;
+            }
+
         }
     </style>
 </head>
@@ -728,7 +809,7 @@
         </div>
 
         <section id="about">
-            <h1>Who are We?</h1>
+            <h1 id="abouth1">Who are We?</h1>
                 <div class="portfolio-grid">
                                 
                     <div class="portfolio-item">
@@ -736,7 +817,6 @@
                         <div class="portfolio-item-content">
                             <h3>Siran Chan</h3>
                             <p>CEO and Co-founder of Shortly.</p>
-                            <a href="#" class="btn">Contact</a>
                         </div>
                     </div>
                     <div class="portfolio-item">
@@ -744,7 +824,6 @@
                         <div class="portfolio-item-content">
                             <h3>Aya McMillan</h3>
                             <p>Head creative director at Shortly.</p>
-                            <a href="#" class="btn">Contact</a>
                         </div>
                     </div>
                     <div class="portfolio-item">
@@ -752,7 +831,6 @@
                         <div class="portfolio-item-content">
                             <h3>Johnathon Roe</h3>
                             <p>General manager of Shortly finance.</p>
-                            <a href="#" class="btn">Contact</a>
                         </div>
                     </div>
                     <div class="portfolio-item">
@@ -760,7 +838,6 @@
                         <div class="portfolio-item-content">
                             <h3>Jack Seffing</h3>
                             <p>Intern at Shortly accounting.</p>
-                            <a href="#" class="btn">Contact</a>
                         </div>
                     </div>
                 </div>
@@ -774,7 +851,6 @@
                         <div class="portfolio-item-content">
                             <h3>Subway</h3>
                             <p>Supporting since 1963.</p>
-                            <a href="#" class="btn">Learn More</a>
                         </div>
                     </div>
                     <div class="portfolio-item">
@@ -782,7 +858,6 @@
                         <div class="portfolio-item-content">
                             <h3>Burger King</h3>
                             <p>Supporting since 2005.</p>
-                            <a href="#" class="btn">Learn More</a>
                         </div>
                     </div>
                     <div class="portfolio-item">
@@ -790,7 +865,6 @@
                         <div class="portfolio-item-content">
                             <h3>Sonic Burger</h3>
                             <p>Supporting since 1865.</p>
-                            <a href="#" class="btn">Learn More</a>
                         </div>
                     </div>
                     <div class="portfolio-item">
@@ -798,7 +872,6 @@
                         <div class="portfolio-item-content">
                             <h3>Want to sponser us?</h3>
                             <p>Support our business!</p>
-                            <a href="#" class="btn">Sponser now!</a>
                         </div>
                     </div>
                 </div>
@@ -895,6 +968,7 @@
         const lenis = new Lenis({
             duration: 1.2,  // Adjust scrolling duration (in seconds)
             smooth: true,
+            syncTouch: true,
             direction: 'vertical',  // Scroll direction
             gestureDirection: 'vertical',
             smoothTouch: true,  // Enable smooth touch scrolling
