@@ -235,6 +235,7 @@
             border-radius: 15px;
             overflow: hidden;
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -319,6 +320,7 @@
             font-size: 18px;
             background: rgba(0, 0, 0, 0.005);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
@@ -500,6 +502,7 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -520,6 +523,7 @@
             padding: 25px;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -978,7 +982,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script async>
+    <script async defer>
         // Initialize Lenis
         const lenis = new Lenis({
             duration: 1.2,  // Adjust scrolling duration (in seconds)
@@ -1255,6 +1259,7 @@ lightModeToggle.addEventListener('click', toggleTheme);
 
 // Apply the stored theme when the page loads
 applyStoredTheme();
+console.log(document.getElementById("spline"));
     </script>
 </body>
 </html>
