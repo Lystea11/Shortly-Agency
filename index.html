@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Sheryan Agency</title>
     <link rel="icon" type="image/png" href="Images/SH.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -17,10 +17,6 @@
             --text-color: #ccd6f6;
             --background-color: #0a192f;
             --accent-color: #f06292;
-        }
-
-        body {
-            overflow-x:hidden;
         }
 
         body.light-mode {
@@ -38,9 +34,14 @@
             color: rgba(0, 0, 0, 0.7);
             opacity: 1; /* Firefox */
           }
+
+          body {
+            overflow-x: hidden;
+          }
         html {
             scrollbar-width: none; /* Hides scrollbar in Firefox */
             scroll-behavior: smooth;
+            overflow-x: hidden;
           }
           
           /* For WebKit-based browsers (Chrome, Safari, Edge) */
